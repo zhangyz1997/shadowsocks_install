@@ -32,7 +32,7 @@ fi
 rpm -Uvh epel-release*rpm
 yum install -y libnet libnet-devel libpcap libpcap-devel gcc
 
-wget http://net-speeder.googlecode.com/files/net_speeder-v0.1.tar.gz -O -|tar xz
+wget https://github.com/snooda/net-speeder/archive/master.zip -O -|unzip
 cd net_speeder
 if [ -f /proc/user_beancounters ] || [ -d /proc/bc ]; then
     sh build.sh -DCOOKED
@@ -49,4 +49,4 @@ cp -Rf net_speeder $NS_PATH
 echo -e "\033[36m net_speeder installed. \033[0m"
 echo -e "\033[36m Usage: nohup ${NS_PATH}/net_speeder $INTERFACE \"ip\" >/dev/null 2>&1 & \033[0m"
 
-./net_speeder venet0 "ip"
+nohup /usr/local/net_speeder/net_speeder venet0 "ip"
