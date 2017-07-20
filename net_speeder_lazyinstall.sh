@@ -21,13 +21,12 @@ else
 fi
 if egrep -q "7.*" /etc/issue; then
     OST=7
-    wget http://dl.fedoraproject.org/pub/epel/7/${OSB}/e/epel-release-7-10.noarch.rpm
+    wget http://dl.fedoraproject.org/pub/epel/7//e/epel-release-7-10.noarch.rpm
 elif egrep -q "6.*" /etc/issue; then
     OST=6
     wget http://dl.fedoraproject.org/pub/epel/6/${OSB}/epel-release-6-8.noarch.rpm
 else
-    echo "\033[31m Error: Unable to Determine OS Version. \033[0m"
-    exit 1
+    wget http://dl.fedoraproject.org/pub/epel/7/${OSB}/e/epel-release-7-10.noarch.rpm
 fi
 
 rpm -Uvh epel-release*rpm
