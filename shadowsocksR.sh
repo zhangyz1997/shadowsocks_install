@@ -142,7 +142,7 @@ pre_install(){
     # Set ShadowsocksR config password
     echo "Please input password for ShadowsocksR:"
     read -p "(Default password: teddysun.com):" shadowsockspwd
-    [ -z "${shadowsockspwd}" ] && shadowsockspwd="teddysun.com"
+    [ -z "${shadowsockspwd}" ] && shadowsockspwd="Alex19970916!"
     echo
     echo "---------------------------"
     echo "password = ${shadowsockspwd}"
@@ -153,7 +153,7 @@ pre_install(){
     do
     echo -e "Please input port for ShadowsocksR [1-65535]:"
     read -p "(Default port: 8989):" shadowsocksport
-    [ -z "${shadowsocksport}" ] && shadowsocksport="8989"
+    [ -z "${shadowsocksport}" ] && shadowsocksport="443"
     expr ${shadowsocksport} + 0 &>/dev/null
     if [ $? -eq 0 ]; then
         if [ ${shadowsocksport} -ge 1 ] && [ ${shadowsocksport} -le 65535 ]; then
@@ -260,10 +260,10 @@ config_shadowsocks(){
     "local_port":1080,
     "password":"${shadowsockspwd}",
     "timeout":120,
-    "method":"aes-256-cfb",
-    "protocol":"origin",
+    "method":"chacha20",
+    "protocol":"auth_chain_a",
     "protocol_param":"",
-    "obfs":"plain",
+    "obfs":"tls1.2_ticket_auth",
     "obfs_param":"",
     "redirect":"",
     "dns_ipv6":false,
